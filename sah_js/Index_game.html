@@ -9,14 +9,57 @@
     <script src="./main_game.js" defer></script>
 </head>
 <body>
-    <div class="wrapper">
+
+    <div class="col-s-2 col-2" id="pravila-igre">
+        <h2>Pravila igre</h2>
+        <p>Drag the dodge over another dodge to an empty field. Repeat until only one dodge remains</p>
+        <img src="./user-manual1.png" alt="Draging dodge over another" >
+    </div>
+    <div class="wrapper col-s-7 .col-7" >
         <h1 class="naslov">Nepoznata bezimena igrica</h1>
         <br>
         <div style="clear:both;"></div>
         <div id="app">
         </div>
-        <div data-x = "77"></div>
-        <button id="undo">UNDO</button>
+        <div data-x = "77">32</div>
+        <div class="dugmici">
+          <button id="undo">Undo</button>  
+          <button id="reset">Start again</button>
+          <button id="sakrij-pravila-igre" onclick="hideMyHelp()">Show/Hide Rules</button>
+        </div>
+        
+
+    </div>
+    <div class="high-score col-s-3 col-3">
+        High score board
+            <h1>
+              <!-- <svg class="ico-cup">
+                <use xlink:href="#cup"></use>
+              </svg> -->
+              High Scores
+            </h1>
+            <ol>
+              <li >
+                <a id="first-li">Lalemud</a>
+                <small>01.01.2022</small>
+              </li>
+              <li >
+                <a class="second-li">Lalara</a>
+                <small>15</small>
+              </li>
+              <li >
+                <a class="third-li">Andjamus</a>
+                <small>7</small>
+              </li>
+              <li >
+                <a class="fifth-li">-</a>
+                <small>-</small>
+              </li>
+              <li >
+                <a class="sixth-li">-</a>
+                <small>-</small>
+              </li>
+            </ol>
     </div>
 </body>
 </html>

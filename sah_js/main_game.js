@@ -1,8 +1,7 @@
 var arr = [];
 var dragged;
-const row = 9;
-const col = 9;
-
+const row = 7;
+const col = 7;
 let stack = [];
 
 let brojTokena = 0;
@@ -15,16 +14,16 @@ function createBoard() {
       var rowArr = [];
       for (var j = 0; j < col; j++) {
         var value = true;
-        if (i < 3 && j < 3) value = false
-        if (i < 3 && j > 5) value = false
-        if (i > 5 && j < 3) value = false
-        if (i > 5 && j > 5) value = false
+        if (i < 2 && j < 2) value = false
+        if (i < 2 && j > 4) value = false
+        if (i > 4 && j < 2) value = false
+        if (i > 4 && j > 4) value = false
         rowArr.push({ piece: value, background: value });
         if (value) brojTokena++;
       }
       arr.push(rowArr);
     }
-    arr[4][4] = { piece: false, background: true }
+    arr[3][3] = { piece: false, background: true }
     brojTokena--
     return arr;
 }
@@ -46,7 +45,7 @@ function renderBoard() {
             /* events fired on the drop targets */
             divPolje.addEventListener("dragover", function( event ) {
                 // prevent default to allow drop
-                event.preventDefault();
+                event.preventDefault(); 
 
             }, false);
 
@@ -75,7 +74,7 @@ function renderBoard() {
                     let middleIstr = middleI.toString()
                     let middleJstr = middleJ.toString()
                     arr[parseInt(middleI)][parseInt(middleJ)].piece = false
-                    //OVde cu da prckam dalje :D
+                    //dalje
                     // querySElectorAll vraca niz, a bez all vraca single vrednost
                     const myNode = document.querySelector(`[data-x="${middleIstr}"][data-y="${middleJstr}"]`);
                     myNode.innerHTML = '';
@@ -132,12 +131,9 @@ function createFigura() {
     return divFigura;
 }
 
-// 4 2 u 4 4 radi
-// startI = 4;
-// startJ = 2;
-// endI = 4;
-// endJ = 4;
-arr = createBoard(9, 9);
+
+
+arr = createBoard();
 renderBoard();
 //ruleCheck();
 document.getElementById("undo").addEventListener('click', () => {
@@ -155,3 +151,28 @@ document.getElementById("undo").addEventListener('click', () => {
         console.log(undoStep);
     }
 })
+
+document.getElementById("reset").addEventListener('click', () => {
+    document.getElementById("app").innerHTML = '';
+    arr = createBoard();
+    renderBoard();
+    brojTokena = 32;
+    stack = [];
+    document.querySelector('[data-x="77"]').innerHTML =  brojTokena;
+})
+
+//za sakrivanje dela za help - SHOW/HIDE RULES
+function hideMyHelp() {
+    var toggleHide = document.getElementById("pravila-igre");
+    if (toggleHide.style.display === "none") {
+        toggleHide.style.display = "block";
+    } else {
+        toggleHide.style.display = "none";
+    }
+}
+
+//Da li postoji jos neki potez, gameover
+
+//Da li je igra resena, posalji na proveru, pozovi => "proveri highscore sa bazom"
+
+//proveri highscore sa bazom
